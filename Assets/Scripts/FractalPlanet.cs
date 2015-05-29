@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(MeshRenderer))]
 public class FractalPlanet : MonoBehaviour
 {
 
