@@ -1,23 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
-using System.Collections;
 
 [ExecuteInEditMode]
+[RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
 public class TerrainGenerator : MonoBehaviour
 {
     private Vector3[] newVertices;
     private Vector2[] newUV;
     private int[] newTriangles;
-    public float width;
-    public int samples;
-    public int perlinLevels;
+    public float width = 40f;
+    public int samples = 100;
+    public int perlinLevels = 2;
 
-    public int count;
-    public float size;
-    public float density = 0.1f;
-    public float separation = -0.2f;
+    public int count = 10;
+    public float size = 2f;
+    public float density = 0.3f;
+    public float separation = -0.9f;
     public float terrainHeight = 1f;
     public int seed;
 
@@ -118,6 +119,9 @@ public class TerrainGenerator : MonoBehaviour
             }
         }
         CreateTriangles();
+        var meshRenderer = GetComponent<MeshRenderer>();
+        if (meshRenderer == null) Debug.LogError("MeshRenderer is null");
+        else if (meshRenderer.sharedMaterial == null) meshRenderer.sharedMaterial = AssetDatabase.GetBuiltinExtraResource<Material>("Default-Diffuse.mat");
         GetComponent<MeshRenderer>().sharedMaterial.color = Color.green;
     }
 
