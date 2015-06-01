@@ -35,6 +35,12 @@ public class SceneMenuLauncher : MonoBehaviour
         OpenScene("Scenes/Test.unity");
     }
 
+    [MenuItem("Scenes/Fractal")]
+    static void OpenFractal()
+    {
+        OpenScene("Scenes/Fractal.unity");
+    }
+
     static void OpenScene(string path)
     {
         EditorApplication.SaveCurrentSceneIfUserWantsTo();

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-
+[ExecuteInEditMode]
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
 public class ProceduralTerrain : MonoBehaviour
@@ -28,7 +27,7 @@ public class ProceduralTerrain : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        localMesh = new Mesh();
+        localMesh = new Mesh {name = name};
         meshFilter = GetComponent<MeshFilter>();
         data = new float[width, height, depth];
         FillData(transform.position.x, transform.position.y, transform.position.z);
@@ -38,8 +37,8 @@ public class ProceduralTerrain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool changed = false;
-        bool changedMeshOnly = false;
+        var changed = false;
+        var changedMeshOnly = false;
         if (Input.GetKey(KeyCode.Q))
         {
             surfaceCrossValue += .01f;
@@ -98,9 +97,9 @@ public class ProceduralTerrain : MonoBehaviour
 
     void FillData(float xOrigin, float yOrigin, float zOrigin)
     {
-        for (int x = 0; x < width; x++)
-            for (int y = 0; y < height; y++)
-                for (int z = 0; z < depth; z++)
+        for (var x = 0; x < width; x++)
+            for (var y = 0; y < height; y++)
+                for (var z = 0; z < depth; z++)
                 {
                     if (x == 0 || x == width - 1)
                     {
@@ -117,9 +116,9 @@ public class ProceduralTerrain : MonoBehaviour
                         data[x, y, z] = -1;
                         continue;
                     }
-                    float dataX = (xOrigin + x) / noiseScaleFactor;
-                    float dataY = (xOrigin + y) / noiseScaleFactor;
-                    float dataZ = (xOrigin + z) / noiseScaleFactor;
+                    var dataX = (xOrigin + x) / noiseScaleFactor;
+                    var dataY = (yOrigin + y) / noiseScaleFactor;
+                    var dataZ = (zOrigin + z) / noiseScaleFactor;
 
                     data[x, y, z] = Mathf.PerlinNoise(dataY, dataX + dataZ) - Mathf.PerlinNoise(dataX, dataZ);
                     data[x, y, z] += -(((float)y / height) - .5f);
