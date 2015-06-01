@@ -121,7 +121,7 @@ public class TerrainGenerator : MonoBehaviour
         CreateTriangles();
         var meshRenderer = GetComponent<MeshRenderer>();
         if (meshRenderer == null) Debug.LogError("MeshRenderer is null");
-        else if (meshRenderer.sharedMaterial == null) meshRenderer.sharedMaterial = AssetDatabase.GetBuiltinExtraResource<Material>("Default-Diffuse.mat");
+        else if (meshRenderer.sharedMaterial == null) meshRenderer.sharedMaterial = AssetDatabase.GetBuiltinExtraResource<Material>("Default-Material.mat");
         GetComponent<MeshRenderer>().sharedMaterial.color = Color.green;
     }
 
