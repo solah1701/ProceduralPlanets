@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\Island.cs" />
      <Compile Include="Assets\Scripts\MeshData.cs" />
      <Compile Include="Assets\Scripts\MeshTerrain.cs" />
+     <Compile Include="Assets\Scripts\MeshUtils\MeshRender.cs" />
      <Compile Include="Assets\Scripts\MyTerrain.cs" />
      <Compile Include="Assets\Scripts\ProceduralTerrain.cs" />
      <Compile Include="Assets\Scripts\QuadCube.cs" />

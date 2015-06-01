@@ -20,7 +20,7 @@ public class FractalPlanet : MonoBehaviour
     void FractalBrownianMotion(int x, int y)
     {
         var total = 0f;
-        frequency = 1.0f/(float) hgrid;
+        frequency = 1.0f / (float)hgrid;
         amplitude = gain;
         for (var i = 0; i < octaves; i++)
         {
@@ -34,12 +34,28 @@ public class FractalPlanet : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        Main();
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    bool Validate()
+    {
+        return false;
+    }
+
+    void Main()
+    {
+        if (!Validate()) return;
+        CreateMesh();
+    }
+
+    void CreateMesh()
+    {
+        var mesh = new Mesh { name = name };
     }
 }

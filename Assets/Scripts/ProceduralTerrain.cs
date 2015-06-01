@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
 [ExecuteInEditMode]
 [RequireComponent(typeof(MeshFilter))]
@@ -31,6 +32,12 @@ public class ProceduralTerrain : MonoBehaviour
         meshFilter = GetComponent<MeshFilter>();
         data = new float[width, height, depth];
         FillData(transform.position.x, transform.position.y, transform.position.z);
+
+        var meshRenderer = GetComponent<MeshRenderer>();
+        if (meshRenderer == null) Debug.LogError("MeshRenderer is null");
+        else if (meshRenderer.sharedMaterial == null) meshRenderer.sharedMaterial = AssetDatabase.GetBuiltinExtraResource<Material>("Default-Material.mat");
+        GetComponent<MeshRenderer>().sharedMaterial.color = Color.green;
+
         ApplyDataToMesh();
     }
 
